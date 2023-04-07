@@ -457,7 +457,7 @@ function ActivityCoefficient(T, cation, anions, I)
     F2 = F(cation, anions, I)[2]
 
     log_γ₁₂_T0 = exp(-Aγ * (z1 * z2 * I^0.5 / (1 + I^0.5)) + z1 * z2 / (z1 + z2) * (F1 / z1 + F2 / z2))
-    A = -0.41 * I^0.5 / (1 + I^0.5) + 0.0391^0.92
+    A = -0.41 * I^0.5 / (1 + I^0.5) + 0.039*I^0.92
     γ₁₂ = exp(log_γ₁₂_T0 * (1.125 - 0.005 * (T - 273.15)) - (0.125 - 0.005 * (T - 273.15)) * A)
     return γ₁₂
 end
@@ -509,7 +509,7 @@ eqs = [
 	I ~ cal_I(z_all,[NH4_aq, Na_aq, H_aq, Cl_aq, NO3_aq, SO4_aq, Ca_aq, K_aq, HSO4_aq])
 	
 	# Equilibrium Equations
-	K3 ~ Ca_aq*SO4_aq
+	0 ~ Ca_aq*SO4_aq
 	Equilibriumconst(K5,T,H5,C5) ~ K_aq*HSO4_aq*((ActivityCoefficient(T,"H","HSO4",I)*ActivityCoefficient(T,"K","Cl",I)/ActivityCoefficient(T,"H","Cl",I))^0.5)^2
 	Equilibriumconst(K11,T,H11,C11) ~ (H_aq*SO4_aq/HSO4_aq)*(ActivityCoefficient(T,"H","SO4",I)^3)/(ActivityCoefficient(T,"H","HSO4",I)^2)
 	Equilibriumconst(K24,T,H24,C24) ~ Na_aq*HSO4_aq*ActivityCoefficient(T,"H","HSO4",I)*ActivityCoefficient(T,"Na","Cl",I)/ActivityCoefficient(T,"H","Cl",I)

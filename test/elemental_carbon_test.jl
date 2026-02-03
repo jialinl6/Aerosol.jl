@@ -11,7 +11,6 @@ using Test
         latrange = deg2rad(40.0f0):deg2rad(2):deg2rad(44.0f0),
         lonrange = deg2rad(-97.0f0):deg2rad(2.5):deg2rad(-92.0f0),
         levrange = 1:1,
-        dtype = Float64
     )
 
     structural_simplify(ElementalCarbon())
@@ -32,5 +31,5 @@ using Test
         "ElementalCarbon₊NEI2016MonthlyEmis_PEC(t) ~ (ElementalCarbon₊T*R*nmolpermol*NEI2016MonthlyEmis₊PEC(t)) / (ElementalCarbon₊P*MW_C)",
         obs
     )
-    @test occursin("ElementalCarbon₊T(t) ~ GEOSFP₊I3₊T", obs)
+    @test occursin("ElementalCarbon₊T(t) ~ GEOSFP₊I3₊T(t)", obs)
 end
